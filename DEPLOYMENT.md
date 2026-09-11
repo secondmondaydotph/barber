@@ -1,4 +1,4 @@
-# Barber: Git, Render, and PostgreSQL transfer
+# Barber: Git, Render, and Aiven PostgreSQL
 
 ## Before uploading
 
@@ -24,21 +24,21 @@ git push -u origin main
 
 Review `git status` before committing. No password, `.env`, dump, or `.local` file should appear.
 
-## Create the Render services
+## Create the Render web service
 
-In Render, create a **Blueprint** from this repository. `render.yaml` creates the Docker web service and its own PostgreSQL database. The app is deployed at the Render service root, and `/health` is used for health checks.
+In Render, create a **Blueprint** from this repository. `render.yaml` creates only the Docker web service. The app is deployed at the Render service root, and `/health` is used for health checks.
 
-The Blueprint injects the private PostgreSQL connection string as `BARBER_DATABASE_URL`. Local Eclipse/Tomcat continues to use `.local/database.properties`.
+When prompted, set `BARBER_DATABASE_URL` to the Aiven PostgreSQL service URI for the `barber` database. It must include `?sslmode=require`. Keep this value in Render only; never commit it. Local Eclipse/Tomcat continues to use `.local/database.properties`.
 
-## Transfer the local PostgreSQL data
+## Transfer the local PostgreSQL data to Aiven
 
 Install PostgreSQL client tools, then run:
 
 ```powershell
 .\deploy\Export-Local-Database.ps1
-.\deploy\Import-To-Render.ps1 -ExternalDatabaseUrl 'PASTE_RENDER_EXTERNAL_DATABASE_URL'
+.\deploy\Import-To-Aiven.ps1 -AivenDatabaseUrl 'PASTE_AIVEN_SERVICE_URI'
 ```
 
-Get the **External Database URL** from the Render database Connect menu. The import uses `--clean --if-exists`; run it only when you intend to replace the target database objects. The dump file is ignored and must not be committed.
+Get the service URI from Aiven's **Overview > Quick connect** area and select a PostgreSQL URI for the `barber` database. The import uses `--clean --if-exists`; run it only when you intend to replace the target database objects. The dump file is ignored and must not be committed.
 
 After import, redeploy or restart the web service and open `/health`.

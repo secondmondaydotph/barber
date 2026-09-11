@@ -7,12 +7,4 @@ services:
     healthCheckPath: /health
     envVars:
       - key: BARBER_DATABASE_URL
-        fromDatabase:
-          name: barber-postgres
-          property: connectionString
-
-databases:
-  - name: barber-postgres
-    plan: free
-    databaseName: barber
-    user: barber_app
+        sync: false
