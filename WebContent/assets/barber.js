@@ -1,0 +1,15 @@
+document.querySelectorAll('form[data-confirm]').forEach(form=>form.addEventListener('submit',e=>{if(!confirm(form.dataset.confirm))e.preventDefault()}));
+document.querySelectorAll('.sidebar .nav-link').forEach(a=>{if(new URL(a.href,location.href).pathname===location.pathname)a.classList.add('active')});
+document.getElementById('table-search')?.addEventListener('input',e=>{document.querySelectorAll('#booking-rows tr').forEach(row=>row.hidden=!row.textContent.toLowerCase().includes(e.target.value.toLowerCase()))});
+const form=document.getElementById('booking-form');
+if(form){let active;let generation=0;const time=form.querySelector('#time'),status=form.querySelector('#availability-status'),button=form.querySelector('#confirm-booking');
+async function refresh(){let current=++generation;active?.abort();active=new AbortController();time.replaceChildren(new Option('Loading…',''));button.disabled=true;
+const selected=[form.service.selectedOptions[0],...form.querySelectorAll('[name=addon]:checked')];let cost=0,minutes=0;selected.forEach(o=>{cost+=Number(o.dataset.price);minutes+=Number(o.dataset.minutes)});document.getElementById('booking-quote').textContent=`Estimated total: PHP ${cost.toFixed(2)} · ${minutes} minutes`;
+const params=new URLSearchParams();['service','barber','date'].forEach(k=>params.set(k,form.elements[k].value));form.querySelectorAll('[name=addon]:checked').forEach(a=>params.append('addon',a.value));
+try{const response=await fetch(form.dataset.availability+'?'+params,{signal:active.signal,headers:{Accept:'application/json'}});if(!response.ok||response.redirected)throw Error('Availability is unavailable. Check the date or sign in again.');const data=await response.json();if(current!==generation)return;time.replaceChildren(new Option('Choose a time',''));data.slots.forEach(t=>time.add(new Option(t,t)));status.textContent=data.slots.length?'Select an available time to confirm.':'No available times on this date. Try another date or barber.';}
+catch(error){if(error.name==='AbortError')return;time.replaceChildren(new Option('Unavailable',''));status.textContent=error.message;}}
+form.addEventListener('change',e=>{if(e.target.name==='time'){button.disabled=!time.value;return}refresh()});form.addEventListener('submit',()=>{button.disabled=true;button.textContent='Confirming…'});refresh();}
+// Keep pages usable even if a remote font or template dependency fails.
+const chartData=document.getElementById('barber-chart-data');
+if(chartData&&window.Chart){const data=JSON.parse(chartData.textContent);new Chart(document.getElementById('barber-week'),{type:'bar',data:{labels:data.dates,datasets:[{label:'Appointments',data:data.counts,backgroundColor:'rgba(0, 156, 255, .7)'}]},options:{responsive:true,scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});new Chart(document.getElementById('barber-value'),{type:'line',data:{labels:data.pastDates,datasets:[{label:'PHP',data:data.values,backgroundColor:'rgba(0, 156, 255, .5)',fill:true}]},options:{responsive:true,scales:{y:{beginAtZero:true}}}});}
+window.addEventListener('load',()=>document.getElementById('spinner')?.classList.remove('show'));

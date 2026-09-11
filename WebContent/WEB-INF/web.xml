@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd" version="6.1" metadata-complete="true">
+<display-name>Barber</display-name>
+<filter><filter-name>SecurityFilter</filter-name><filter-class>com.barber.controller.SecurityFilter</filter-class></filter>
+<filter-mapping><filter-name>SecurityFilter</filter-name><url-pattern>/*</url-pattern></filter-mapping>
+<servlet><servlet-name>AppServlet</servlet-name><servlet-class>com.barber.controller.AppServlet</servlet-class><load-on-startup>1</load-on-startup></servlet>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/home</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/about</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/services</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/team</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/contact</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/testimonials</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/login</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/register</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/logout</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/book</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/availability</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/my-bookings</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/profile</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/cancel-booking</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/dashboard</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/admin/*</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/staff/*</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/health</url-pattern></servlet-mapping>
+<servlet-mapping><servlet-name>AppServlet</servlet-name><url-pattern>/error-page</url-pattern></servlet-mapping>
+<error-page><error-code>400</error-code><location>/error-page</location></error-page>
+<error-page><error-code>403</error-code><location>/error-page</location></error-page>
+<error-page><error-code>404</error-code><location>/error-page</location></error-page>
+<error-page><error-code>500</error-code><location>/error-page</location></error-page>
+<error-page><exception-type>java.lang.Throwable</exception-type><location>/error-page</location></error-page>
+<session-config><session-timeout>30</session-timeout><cookie-config><http-only>true</http-only></cookie-config><tracking-mode>COOKIE</tracking-mode></session-config>
+<welcome-file-list><welcome-file>index.jsp</welcome-file></welcome-file-list>
+</web-app>

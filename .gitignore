@@ -1,0 +1,15 @@
+.local/
+build/
+bin/
+*.class
+*.log
+.env
+.env.*
+!.env.example
+*.dump
+*.backup
+*.sql.gz
+.metadata/
+.idea/
+.clean-backup-*/
+WebContent/WEB-INF/classes/database.properties

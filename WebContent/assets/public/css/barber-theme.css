@@ -1,0 +1,36 @@
+/* Color-only skin layered over the actual Salone template. */
+:root{--bs-primary:#62666c;--bs-secondary:#b49a64;--barber-gold:#b49a64}
+.text-primary{color:#62666c!important}.bg-primary{background-color:#62666c!important;color:#fff}.border-primary{border-color:#62666c!important}
+.text-secondary{color:#b49a64!important}.bg-secondary{background-color:#b49a64!important}.border-secondary{border-color:#b49a64!important}
+.btn-primary{color:#fff!important;background-color:#62666c!important;border-color:#62666c}.btn-primary:hover,.btn-primary:focus,.btn-primary:active{color:#fff!important;background-color:#44474c!important;border-color:#44474c!important}
+.btn-primary:disabled{background-color:#62666c;border-color:#62666c}.btn-outline-primary{color:#62666c;border-color:#62666c}.btn-outline-primary:hover{background:#62666c;border-color:#62666c;color:white}
+.navbar-brand.bg-primary h1,.bg-primary .text-dark,.bg-primary h1{color:white!important}
+a{color:#555a60}a:hover{color:#806b40}.footer .text-primary,.bg-dark .text-primary{color:#d2bd91!important}
+.navbar .nav-link:hover,.navbar .nav-link.active{color:#806b40!important}.form-control:focus,.form-select:focus{border-color:#b49a64;box-shadow:0 0 0 .2rem #b49a6433}
+.form-check-input:checked{background-color:#62666c;border-color:#62666c}.owl-dot.active{background:#62666c!important}.owl-nav .owl-prev,.owl-nav .owl-next{background:#62666c!important;color:white!important}
+input,select,button{touch-action:manipulation}button:focus-visible,a:focus-visible{outline:3px solid #b49a64;outline-offset:3px}
+@media(max-width:575px){.table{min-width:620px}input,select{font-size:16px!important}}
+@media(max-width:575px){.barber-form-page .back-to-top{display:none!important}}
+
+/* Neutral typography keeps the barbershop character welcoming to every client. */
+body,button,input,select,textarea{font-family:Inter,"Segoe UI",Arial,sans-serif!important}
+h1,h2,h3,h4,h5,h6,.font-dancing-script{font-family:Inter,"Segoe UI",Arial,sans-serif!important;font-style:normal}
+.font-dancing-script{font-weight:600;letter-spacing:.02em}
+
+/* Barber-service pictograms replace the original beauty-salon illustrations. */
+.barber-service-icon{width:80px;height:80px;margin:0 auto 1rem;border:2px solid #b49a64;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#62666c;background:#fff;font-size:.78rem;font-weight:700;letter-spacing:.08em}
+
+/* Unified navigation and brand typography. */
+.navbar .navbar-nav .nav-link,.navbar .dropdown-item{font-family:Inter,"Segoe UI",Arial,sans-serif!important;font-weight:600;letter-spacing:.045em}
+.brand-lockup{display:flex;align-items:center;gap:.75rem;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:1.75rem;font-weight:700;line-height:1;white-space:nowrap}
+.brand-lockup img{width:56px;height:56px;object-fit:contain;background:transparent}
+
+/* Remove the template's decorative crossing frames from every button. */
+.btn-primary::before,.btn-primary::after,.btn-dark::before,.btn-dark::after{display:none!important;content:none!important}
+.btn-primary,.btn-dark{margin:0!important}
+
+/* Readable forest-green hero panel, coordinated with gray and muted gold. */
+.hero-header .hero-header-text{background:rgba(45,83,72,.92);padding-left:clamp(1.5rem,5vw,6rem)!important}
+.hero-header .hero-header-text h1,.hero-header .hero-header-text h5,.hero-header .hero-header-text p,.hero-header .hero-header-text .text-primary,.hero-header .hero-header-text .text-dark{color:#fff!important}
+.hero-header .hero-header-text .btn-primary{background:#b49a64!important;border-color:#b49a64!important;color:#20372f!important}
+@media(max-width:991.98px){.brand-lockup{font-size:1.35rem}.brand-lockup img{width:46px;height:46px}.hero-header .hero-header-text{padding-left:1.5rem!important;padding-right:1.5rem!important}}

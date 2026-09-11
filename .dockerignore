@@ -1,0 +1,12 @@
+.git
+.local
+build
+bin
+.clean-backup-*
+sourceTemplate
+SalonImage
+tests
+*.log
+*.dump
+*.backup
+.env*
