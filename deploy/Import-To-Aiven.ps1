@@ -1,8 +1,9 @@
 param(
   [Parameter(Mandatory=$true)][string]$AivenDatabaseUrl,
-  [string]$InputFile = (Join-Path $PSScriptRoot 'barber.dump')
+  [string]$InputFile = ''
 )
 $ErrorActionPreference = 'Stop'
+if ([string]::IsNullOrWhiteSpace($InputFile)) { $InputFile = Join-Path $PSScriptRoot 'barber.dump' }
 if (-not (Test-Path -LiteralPath $InputFile)) { throw "Dump file not found: $InputFile" }
 if (-not (Get-Command pg_restore -ErrorAction SilentlyContinue)) { throw 'pg_restore was not found. Install PostgreSQL client tools and add the bin folder to PATH.' }
 & pg_restore --dbname=$AivenDatabaseUrl --no-owner --no-acl --no-comments --clean --if-exists $InputFile
